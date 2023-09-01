@@ -24,6 +24,13 @@ pub fn show(ctx: &Context, app_data: &mut AppData) {
                         UnionFindType::QuickUnion.name(),
                     )
                     .clicked()
+                || ui
+                    .selectable_value(
+                        &mut selected_type,
+                        UnionFindType::WeightedQuickUnion,
+                        UnionFindType::WeightedQuickUnion.name(),
+                    )
+                    .clicked()
             {
                 app_data.union_find_type = selected_type;
                 app_data.uf = None;
