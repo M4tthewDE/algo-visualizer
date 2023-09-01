@@ -1,4 +1,4 @@
-use algs::QuickFindUF;
+use algs::UnionFindAlgs;
 use eframe::{App, Frame, NativeOptions};
 use egui::Context;
 
@@ -25,7 +25,7 @@ pub struct AppData {
     p_connected: usize,
     q_connected: usize,
     connected_text: Option<String>,
-    uf: Option<QuickFindUF>,
+    uf: Option<UnionFindAlgs>,
 }
 
 #[derive(Default)]

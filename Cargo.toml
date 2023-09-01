@@ -8,4 +8,5 @@ edition = "2021"
 [dependencies]
 eframe = "0.22.0"
 egui = "0.22.0"
+enum_dispatch = "0.3.12"
 env_logger = "0.10.0"

@@ -1,6 +1,6 @@
 use egui::{CentralPanel, Context, DragValue};
 
-use crate::{algs::QuickFindUF, AppData};
+use crate::{algs::QuickFind, algs::UnionFind, algs::UnionFindAlgs, AppData};
 
 pub fn show(ctx: &Context, app_data: &mut AppData) {
     CentralPanel::default().show(ctx, |ui| {
@@ -11,7 +11,7 @@ pub fn show(ctx: &Context, app_data: &mut AppData) {
         });
 
         if ui.button("Go").clicked() {
-            app_data.uf = Some(QuickFindUF::new(app_data.n));
+            app_data.uf = Some(UnionFindAlgs::QuickFind(QuickFind::new(app_data.n)));
         }
 
         if let Some(uf) = &mut app_data.uf {
@@ -49,7 +49,7 @@ pub fn show(ctx: &Context, app_data: &mut AppData) {
             });
 
             ui.separator();
-            for (i, id) in uf.ids.iter().enumerate() {
+            for (i, id) in uf.ids().iter().enumerate() {
                 ui.horizontal(|ui| {
                     ui.label(i.to_string());
                     ui.label(id.to_string());
