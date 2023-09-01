@@ -1,4 +1,4 @@
-use algs::UnionFindAlgs;
+use algs::{UnionFindAlgs, UnionFindType};
 use eframe::{App, Frame, NativeOptions};
 use egui::Context;
 
@@ -25,6 +25,7 @@ pub struct AppData {
     p_connected: usize,
     q_connected: usize,
     connected_text: Option<String>,
+    union_find_type: UnionFindType,
     uf: Option<UnionFindAlgs>,
 }
 

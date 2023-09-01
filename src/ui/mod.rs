@@ -1,17 +1,42 @@
 use egui::{CentralPanel, Context, DragValue};
 
-use crate::{algs::QuickFind, algs::UnionFind, algs::UnionFindAlgs, AppData};
+use crate::{
+    algs::{UnionFind, UnionFindType},
+    AppData,
+};
 
 pub fn show(ctx: &Context, app_data: &mut AppData) {
     CentralPanel::default().show(ctx, |ui| {
         ui.heading("Quick Find");
+        let mut selected_type = app_data.union_find_type.clone();
+        ui.horizontal(|ui| {
+            if ui
+                .selectable_value(
+                    &mut selected_type,
+                    UnionFindType::QuickFind,
+                    UnionFindType::QuickFind.name(),
+                )
+                .clicked()
+                || ui
+                    .selectable_value(
+                        &mut selected_type,
+                        UnionFindType::QuickUnion,
+                        UnionFindType::QuickUnion.name(),
+                    )
+                    .clicked()
+            {
+                app_data.union_find_type = selected_type;
+                app_data.uf = None;
+            };
+        });
+
         ui.horizontal(|ui| {
             ui.label("Number of elements:");
             ui.add(DragValue::new(&mut app_data.n).speed(0.1));
         });
 
         if ui.button("Go").clicked() {
-            app_data.uf = Some(UnionFindAlgs::QuickFind(QuickFind::new(app_data.n)));
+            app_data.uf = Some(app_data.union_find_type.get_alg(app_data.n));
         }
 
         if let Some(uf) = &mut app_data.uf {
