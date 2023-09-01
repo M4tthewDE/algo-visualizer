@@ -27,6 +27,9 @@ pub struct AppData {
     connected_text: Option<String>,
     union_find_type: UnionFindType,
     uf: Option<UnionFindAlgs>,
+    is_simulation: bool,
+    iterations: u64,
+    square_size: u64,
 }
 
 #[derive(Default)]
