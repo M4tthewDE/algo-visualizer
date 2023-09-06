@@ -1,4 +1,4 @@
-use algs::{UnionFindAlgs, UnionFindType};
+use algs::unionfind::{UnionFindAlgs, UnionFindType};
 use eframe::{App, Frame, NativeOptions};
 use egui::Context;
 

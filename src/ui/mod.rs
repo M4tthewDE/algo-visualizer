@@ -1,7 +1,7 @@
 use egui::{CentralPanel, Context, DragValue};
 
 use crate::{
-    algs::{UnionFind, UnionFindType},
+    algs::unionfind::{UnionFind, UnionFindType},
     AppData,
 };
 
