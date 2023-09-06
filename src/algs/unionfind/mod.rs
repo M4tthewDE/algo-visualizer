@@ -25,25 +25,25 @@ impl UnionFindType {
         }
     }
 
-    pub fn get_alg(&self, n: u64) -> UnionFindAlgs {
+    pub fn get_alg(&self, n: u64) -> UnionFindAlg {
         match self {
-            UnionFindType::QuickFind => UnionFindAlgs::QuickFind(QuickFind::new(n)),
-            UnionFindType::QuickUnion => UnionFindAlgs::QuickUnion(QuickUnion::new(n)),
+            UnionFindType::QuickFind => UnionFindAlg::QuickFind(QuickFind::new(n)),
+            UnionFindType::QuickUnion => UnionFindAlg::QuickUnion(QuickUnion::new(n)),
             UnionFindType::WeightedQuickUnion => {
-                UnionFindAlgs::WeightedQuickUnion(WeightedQuickUnion::new(n))
+                UnionFindAlg::WeightedQuickUnion(WeightedQuickUnion::new(n))
             }
         }
     }
 }
 
 #[enum_dispatch]
-pub enum UnionFindAlgs {
+pub enum UnionFindAlg {
     QuickFind,
     QuickUnion,
     WeightedQuickUnion,
 }
 
-#[enum_dispatch(UnionFindAlgs)]
+#[enum_dispatch(UnionFindAlg)]
 pub trait UnionFind {
     fn union(&mut self, p: usize, q: usize);
     fn connected(&self, p: usize, q: usize) -> bool;
