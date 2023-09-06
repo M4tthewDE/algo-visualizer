@@ -1,7 +1,7 @@
 use egui::{CentralPanel, Context, DragValue};
 
 use crate::{
-    algs::unionfind::{UnionFind, UnionFindType},
+    algs::unionfind::{percolation, UnionFind, UnionFindType},
     AppData,
 };
 
@@ -38,7 +38,7 @@ pub fn show(ctx: &Context, app_data: &mut AppData) {
         });
         ui.separator();
 
-        ui.checkbox(&mut app_data.is_simulation, "Simulation");
+        ui.checkbox(&mut app_data.is_simulation, "Percolation");
         ui.separator();
 
         if app_data.is_simulation {
@@ -51,8 +51,16 @@ pub fn show(ctx: &Context, app_data: &mut AppData) {
                 ui.add(DragValue::new(&mut app_data.square_size).speed(0.1));
             });
             if ui.button("Go").clicked() {
-                // TODO: run simulation and display results -> ASYNC!!
-                // Progress bar!
+                // TODO: async with progress bar!
+                app_data.percolation_ratio = Some(percolation::simulate(
+                    app_data.iterations,
+                    app_data.square_size,
+                    app_data.union_find_type.clone(),
+                ));
+            }
+
+            if let Some(ratio) = app_data.percolation_ratio {
+                ui.label(format!("Ratio: {}", ratio));
             }
         } else {
             ui.horizontal(|ui| {

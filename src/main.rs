@@ -28,8 +28,9 @@ pub struct AppData {
     union_find_type: UnionFindType,
     uf: Option<UnionFindAlg>,
     is_simulation: bool,
-    iterations: u64,
-    square_size: u64,
+    iterations: usize,
+    square_size: usize,
+    percolation_ratio: Option<f64>,
 }
 
 #[derive(Default)]

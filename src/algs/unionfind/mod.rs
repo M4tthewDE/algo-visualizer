@@ -8,6 +8,8 @@ mod quick_find;
 mod quick_union;
 mod weighted_quick_union;
 
+pub mod percolation;
+
 #[derive(Clone, Default, PartialEq)]
 pub enum UnionFindType {
     #[default]

@@ -121,6 +121,7 @@ dependencies = [
  "egui",
  "enum_dispatch",
  "env_logger",
+ "rand",
 ]
 
 [[package]]
